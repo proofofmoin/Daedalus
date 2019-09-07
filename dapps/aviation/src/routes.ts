@@ -35,6 +35,7 @@ const routeRegistration: Array<RouteRegistrationInterface> = [
   { path: '', redirect: { path: 'planes' } },
   { path: 'planes', component: PlanesComponent },
   { path: 'newplane', component: NewPlaneComponent },
+  { path: '*', redirect: { path: 'planes' } },
 ];
 
 export default routeRegistration;
