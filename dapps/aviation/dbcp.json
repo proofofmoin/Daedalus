@@ -1,0 +1,40 @@
+{
+  "public": {
+    "author": "evan GmbH",
+    "dapp": {
+      "dependencies": {
+        "evancore.vue.libs": "^1.0.0"
+      },
+      "entrypoint": "aviation.js",
+      "files": [
+        "aviation.js",
+        "aviation.css"
+      ],
+      "primaryColor": "",
+      "secondaryColor": "#f9f9ff",
+      "origin": "",
+      "standalone": true,
+      "type": "dapp"
+    },
+    "dbcpVersion": 1,
+    "description": "",
+    "i18n": {
+      "description": {
+        "en": ""
+      },
+      "name": {
+        "en": "aviation"
+      }
+    },
+    "imgSquare": "https://pbs.twimg.com/profile_images/3786155988/46ea2dd8b1bdd31a8ba61044cb5b6ebe_400x400.png",
+    "name": "aviation",
+    "tags": [
+      "dapp",
+      "evan",
+      "library",
+      "aviation"
+    ],
+    "version": "1.0.0",
+    "versions": {}
+  }
+}

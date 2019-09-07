@@ -1,0 +1,5 @@
+node_modules/
+dapps/**/dist
+**/.env
+**/.env.**
+!**/.env.example
