@@ -26,9 +26,9 @@
 */
 
 // vue imports
-import Vue from 'vue';
-import Component, { mixins } from 'vue-class-component';
-import { Prop } from 'vue-property-decorator';
+import Vue from "vue";
+import Component, { mixins } from "vue-class-component";
+import { Prop } from "vue-property-decorator";
 
 // evan.network imports
 import { EvanComponent, EvanForm, EvanFormControl } from '@evan.network/ui-vue-core';
@@ -37,99 +37,87 @@ import * as dappBrowser from '@evan.network/ui-dapp-browser';
 
 import * as dispatchers from '../../dispatchers/registry';
 
-
 interface AliasFormInterface extends EvanForm {
+  accountId: EvanFormControl;
   alias: EvanFormControl;
+  email: EvanFormControl;
+  emailInvite: EvanFormControl;
+  eve: EvanFormControl;
+  tags: EvanFormControl;
 }
 
-@Component({ })
-export default class DispatcherSampleComponent extends mixins(EvanComponent) {
+interface PlaneFormInterface extends EvanForm {
+  planeModel: EvanFormControl;
+  msn: EvanFormControl;
+}
+
+@Component({})
+export default class NewPlaneComponent extends mixins(EvanComponent) {
   /**
    * show a loading symbol
    */
   loading = true;
 
   /**
-   * my name loaded from my addressbook
-   */
-  alias = '';
-
-  /**
    * Formular definition to handle form changes easily.
    */
-  aliasForm: AliasFormInterface = null;
+  createForm: PlaneFormInterface = null;
 
   /**
    * Watch for dispatcher updates...
    */
-  savingWatcher = null;
-  saving = false;
+  creatingWatcher = null;
+  creating = false;
 
   /**
    * Load runtime from current scope and start using it...
    */
   async created() {
     const runtime = (<any>this).getRuntime();
-    const dapp = (<any>this).dapp;
     const addressBook = await runtime.profile.getAddressBook();
 
-    // update alias
-    this.aliasForm = (<AliasFormInterface>new EvanForm(this, {
-      alias: {
-        value: addressBook.profile[runtime.activeAccount].alias,
-        validate: function(vueInstance: DispatcherSampleComponent, form: AliasFormInterface) {
+    this.createForm = (<PlaneFormInterface>new EvanForm(this, {
+      planeModel: {
+        value: "",
+        validate: function(vueInstance: NewPlaneComponent, form: PlaneFormInterface) {
+          return this.value.length !== 0;
+        }
+      },
+      msn: {
+        value: "",
+        validate: function(vueInstance: NewPlaneComponent, form: PlaneFormInterface) {
           return this.value.length !== 0;
         }
       },
     }));
 
     // watch for updates
-    this.savingWatcher = dispatchers.saveDispatcher.watch(() => this.checkSaving());
-    this.checkSaving();
+    this.creatingWatcher = dispatchers.newPlaneDispatcher.watch(() => this.checkCreating());
+    this.checkCreating();
 
     // display content
     this.loading = false;
   }
 
-  /**
-   * Remove dispatcher listener
-   */
-  beforeDestroy() {
-    this.savingWatcher && this.savingWatcher();
-  }
-
-  /**
-   * Save the alias that was specified.
-   */
-  saveAlias() {
-    // start invite dispatcher
-    dispatchers.saveDispatcher.start((<any>this).getRuntime(), {
-      alias: this.aliasForm.alias.value,
+  newPlane() {
+    dispatchers.newPlaneDispatcher.start((<any>this).getRuntime(), {
+      planeModel: this.createForm.planeModel.value,
+      msn: this.createForm.msn.value,
     });
   }
 
   /**
    * Watch for dispatcher updates.
    */
-  async checkSaving() {
+  async checkCreating() {
     const runtime = (<any>this).getRuntime();
-    const dispatcherInstances = await dispatchers.saveDispatcher.getInstances(runtime);
+    const dispatcherInstances = await dispatchers.newPlaneDispatcher.getInstances(runtime);
 
     // if more than one dispatcher is running, block interactions
     if (dispatcherInstances.length > 0) {
-      this.saving = true;
+      this.creating = true;
     } else {
-      // if saving was finished, reload the data
-      if (this.saving) {
-        delete runtime.profile.trees[runtime.profile.treeLabels.addressBook];
-        await runtime.profile.loadForAccount(runtime.profile.treeLabels.addressBook);
-        const addressBook = await runtime.profile.getAddressBook();
-        this.aliasForm.alias.value = addressBook.profile[runtime.activeAccount].alias;
-
-        (<any>this.$refs.saveFinishedModal).show();
-      }
-
-      this.saving = false;
+      this.creating = false;
     }
   }
 }

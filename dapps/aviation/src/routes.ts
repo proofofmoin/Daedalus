@@ -27,14 +27,14 @@
 // import evan libs
 import { RouteRegistrationInterface } from '@evan.network/ui-vue-core';
 
-import HelloWorldComponent from './components/helloworld/helloworld.vue';
-import DispatcherComponent from './components/dispatcher/dispatcher.vue';
+import PlanesComponent from "./components/planes/planes";
+import NewPlaneComponent from "./components/newPlane/newPlane";
 
 // map them to element names, so they can be used within templates
 const routeRegistration: Array<RouteRegistrationInterface> = [
-  { path: '', redirect: { path: 'helloworld' } },
-  { path: 'helloworld', component: HelloWorldComponent },
-  { path: 'dispatcher', component: DispatcherComponent },
+  { path: '', redirect: { path: 'planes' } },
+  { path: 'planes', component: PlanesComponent },
+  { path: 'newplane', component: NewPlaneComponent },
 ];
 
 export default routeRegistration;

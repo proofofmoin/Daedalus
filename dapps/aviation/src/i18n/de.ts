@@ -27,21 +27,36 @@
 
 /* tslint:disable */
 export default {
-  "_sample": {
+  "aviate": {
+    "planes": {
+      "createForm": {
+        "msn": {
+          "label": "MSN",
+          "placeholder": "Seriennummer",
+          "error": "Bitte eine Seriennummer angeben!",
+        },
+        "planeModel": {
+          "label": "Model",
+          "placeholder": "z.B. A320",
+          "error": "Bitte ein Model angeben!",
+        }
+      }
+    },
     "alias": {
       "desc": "Nutzername des neuen Kontakts",
       "error": "Bitte geben Sie einen Alias an!",
       "title": "Alias"
     },
     "breadcrumbs": {
-      "dispatcher": "Speicher-Sample",
-      "helloworld": "Hallo Welt"
+      "planes": "Flugzeuge",
+      "newplane": "Neues Flugzeug"
     },
     "content": "Herzlichen Glückwunsch {alias}, Sie haben erfolreich Ihre Vue Beispielanwendung erstellt.",
+    "content-test": "Neue daten: {test}",
     "dispatcher": {
-      "save": "Alias speichern"
+      "save": "Alias speichern",
+      "new-plane": "Neues Flugzeug erstellen"
     },
-    "header": "Vue Beispiel",
     "header2": "Datenbereich",
     "save-finished": "Speichern erfolgreich",
     "save-finished-desc": "Sie haben erfolgreich Ihren Alias gespeichert.",

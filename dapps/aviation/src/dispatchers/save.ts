@@ -32,10 +32,10 @@ import { EvanComponent, EvanForm, EvanFormControl } from '@evan.network/ui-vue-c
 
 
 const dispatcher = new Dispatcher(
-  `aviation.${ dappBrowser.getDomainName() }`,
+  `aviate.${ dappBrowser.getDomainName() }`,
   'saveDispatcher',
   40 * 1000,
-  '_sample.dispatcher.save'
+  'aviate.dispatcher.save'
 );
 
 dispatcher

@@ -26,15 +26,18 @@
 */
 
 // vue imports
-import Vue from 'vue';
-import Component, { mixins } from 'vue-class-component';
-import { Prop } from 'vue-property-decorator';
+import Vue from "vue";
+import Component, { mixins } from "vue-class-component";
+import { Prop, Model } from "vue-property-decorator";
 
 // evan.network imports
-import { EvanComponent, EvanForm, EvanFormControl } from '@evan.network/ui-vue-core';
-import * as bcc from '@evan.network/api-blockchain-core';
-import * as dappBrowser from '@evan.network/ui-dapp-browser';
-
+import {
+  EvanComponent,
+  EvanForm,
+  EvanFormControl
+} from "@evan.network/ui-vue-core";
+import * as bcc from "@evan.network/api-blockchain-core";
+import * as dappBrowser from "@evan.network/ui-dapp-browser";
 
 interface AliasFormInterface extends EvanForm {
   accountId: EvanFormControl;
@@ -45,40 +48,57 @@ interface AliasFormInterface extends EvanForm {
   tags: EvanFormControl;
 }
 
-@Component({ })
-export default class HelloWorldComponent extends mixins(EvanComponent) {
+@Component({})
+export default class PlanesComponent extends mixins(EvanComponent) {
   /**
    * show a loading symbol
    */
   loading = true;
-
-  /**
-   * my name loaded from my addressbook
-   */
-  alias = '';
-
-  /**
-   * Formular definition to handle form changes easily.
-   */
-  aliasForm: AliasFormInterface = null;
+  data = {
+    model: "",
+    msn: ""
+  };
+  planes = [];
 
   /**
    * Load runtime from current scope and start using it...
    */
   async created() {
     const runtime = (<any>this).getRuntime();
-    const dapp = (<any>this).dapp;
-    const addressBook = await runtime.profile.getAddressBook();
 
-    // update alias
-    this.alias = addressBook.profile[runtime.activeAccount].alias;
+    // grap all saved planes
+    const createdPlanes =
+      (await runtime.profile.getBcContracts("planes.evan")) || {};
+    delete createdPlanes.cryptoInfo;
 
-    console.log('runtime:');
-    console.dir(runtime);
-    console.dir('dapp information:');
-    console.dir(dapp);
-    console.dir('addressbook:');
-    console.dir(addressBook);
+    const planeAddresses = Object.keys(createdPlanes);
+    console.log("Planes: ", planeAddresses);
+    if (planeAddresses.length < 1) {
+      this.loading = false;
+      return;
+    }
+
+    let planePromises = planeAddresses.map(address => {
+      return (new bcc.DigitalTwin(runtime, {
+        accountId: runtime.activeAccount,
+        address: address,
+        containerConfig: null
+      }))
+        .getEntry("data")
+        .then(container => {
+          return Promise.all([
+            container.value.getEntry("model"),
+            container.value.getEntry("msn")
+          ]);
+        })
+        .then(([model, msn]) => {
+          return { model: model, msn: msn };
+        });
+    });
+
+    this.planes = await Promise.all(planePromises);
+    // await Promise.all(this.planes.reduce((all, current) => all.concat(current), []));
+    console.log(this.planes);
 
     this.loading = false;
   }

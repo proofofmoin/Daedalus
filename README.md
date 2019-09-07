@@ -1,4 +1,4 @@
-# aviation
+# aviate
 
 ## Install
 - you very likely will need `nvm` installed

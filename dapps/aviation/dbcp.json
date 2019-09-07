@@ -3,12 +3,13 @@
     "author": "evan GmbH",
     "dapp": {
       "dependencies": {
-        "evancore.vue.libs": "^1.0.0"
+        "evancore.vue.libs": "^1.0.0",
+        "digitaltwin.lib": "^1.8.0"
       },
-      "entrypoint": "aviation.js",
+      "entrypoint": "aviate.js",
       "files": [
-        "aviation.js",
-        "aviation.css"
+        "aviate.js",
+        "aviate.css"
       ],
       "primaryColor": "",
       "secondaryColor": "#f9f9ff",
@@ -23,16 +24,16 @@
         "en": ""
       },
       "name": {
-        "en": "aviation"
+        "en": "aviate"
       }
     },
     "imgSquare": "https://pbs.twimg.com/profile_images/3786155988/46ea2dd8b1bdd31a8ba61044cb5b6ebe_400x400.png",
-    "name": "aviation",
+    "name": "aviate",
     "tags": [
       "dapp",
       "evan",
       "library",
-      "aviation"
+      "aviate"
     ],
     "version": "1.0.0",
     "versions": {}

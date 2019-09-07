@@ -26,7 +26,9 @@
 */
 
 import saveDispatcher from './save';
+import newPlaneDispatcher from './newPlane';
 
 export {
   saveDispatcher,
+  newPlaneDispatcher
 }

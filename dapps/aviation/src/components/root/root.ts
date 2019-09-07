@@ -43,11 +43,11 @@ export default class RootComponent extends mixins(EvanComponent) {
   tabs = null;
 
   created() {
-    this.tabs = [ 'helloworld', 'dispatcher', ]
+    this.tabs = [ 'planes', 'newplane', ]
       .map(urlKey => ({
         id: `tab-${ urlKey }`,
         href: `${ (<any>this).dapp.fullUrl }/${ urlKey }`,
-        text: `_sample.breadcrumbs.${ urlKey }`
+        text: `aviate.breadcrumbs.${ urlKey }`
       }));
   }
 }

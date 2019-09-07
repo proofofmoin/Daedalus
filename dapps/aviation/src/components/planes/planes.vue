@@ -28,30 +28,23 @@
 <template>
   <div class="container-wide">
     <evan-loading v-if="loading"></evan-loading>
-    <div class="d-flex mb-5 align-items-center" v-else>
-      <div>
-        <h3 class="font-weight-bold mb-0 force-oneline bg-level-3">
-          {{ '_sample.header' | translate }}
-        </h3>
-      </div>
-      <span class="mx-auto"></span>
-    </div>
-    <div class="white-box border-smooth rounded">
+    <div class="white-box border-smooth rounded" v-for="plane in planes" v-bind:key="plane.msn">
       <div class="header">
         <h3 class="m-0 font-weight-semibold">
-          {{ '_sample.header2' | translate }}
+          {{plane.model}}:{{plane.msn}}
         </h3>
       </div>
-      
+
       <div class="content">
-        {{ $t('_sample.content', { alias }) }}
+        <p>Model: {{plane.model}}</p>
+        <p>MSN: {{plane.msn}}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-  import RootComponent from './helloworld.ts';
+  import RootComponent from './planes';
   export default RootComponent;
 </script>
 

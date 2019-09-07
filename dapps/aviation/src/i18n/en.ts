@@ -27,19 +27,35 @@
 
 /* tslint:disable */
 export default {
-  "_sample": {
+  "aviate": {
+    "planes": {
+      "createForm": {
+        "msn": {
+          "label": "MSN",
+          "placeholder": "Serialnumber",
+          "error": "Please enter a Serialnumber!",
+        },
+        "planeModel": {
+          "label": "Plane model",
+          "placeholder": "e.g. A320",
+          "error": "Please enter a model!",
+        }
+      }
+    },
     "alias": {
       "desc": "Username of the new contact",
       "error": "Please enter an alias!",
       "title": "Alias"
     },
     "breadcrumbs": {
-      "dispatcher": "Saving-Sample",
-      "helloworld": "Hello World"
+      "planes": "Planes",
+      "newplane": "New plane"
     },
     "content": "Congratulations {alias}, you've successfully created your Vue sample application.",
+    "content-test": "New data: {test}",
     "dispatcher": {
-      "save": "Saving Alias"
+      "save": "Saving Alias",
+      "new-plane": "Create a new plane"
     },
     "header": "Vue example",
     "header2": "Data area",

@@ -50,7 +50,7 @@ const bcConfig = {
       profile: process.env.ENS_PROFILES || ['profile', 'ensRoot'],
       profileFactory: ['profile', 'factory', 'ensRoot'],
       mailbox: process.env.ENS_MAILBOX || ['mailbox', 'ensRoot'],
-      dappsDomain: 'aviation.fifs.registrar.test',
+      dappsDomain: 'aviate.fifs.registrar.test',
     },
   },
   smartAgents: {

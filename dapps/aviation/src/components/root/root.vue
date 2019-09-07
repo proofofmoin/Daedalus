@@ -30,7 +30,7 @@
     <evan-dapp-wrapper :routes="[ ]">
       <template slot="content">
         <evan-breadcrumbs
-          :i18nScope="'_sample.breadcrumbs'"
+          :i18nScope="'aviate.breadcrumbs'"
           :enableReload="true">
         </evan-breadcrumbs>
 
@@ -39,13 +39,13 @@
           ref="navTabs">
         </evan-nav-tabs>
 
-        <evan-dapp-wrapper-level-2>
+        <!-- <evan-dapp-wrapper-level-2>
           <template v-slot:content>
             <div class="w300 p-3">
-              {{ '_sample.sidebarcontent' | translate}}
+              {{ 'aviate.sidebarcontent' | translate}}
             </div>
           </template>
-        </evan-dapp-wrapper-level-2>
+        </evan-dapp-wrapper-level-2> -->
 
         <transition name="fade" mode="out-in">
           <router-view></router-view>
@@ -56,7 +56,7 @@
 </template>
 
 <script lang="ts">
-  import RootComponent from './root.ts';
+  import RootComponent from './root';
   export default RootComponent;
 </script>
 

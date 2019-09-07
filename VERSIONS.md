@@ -1,4 +1,4 @@
-# aviation
+# aviate
 
 ## Next Version
 ### Features
