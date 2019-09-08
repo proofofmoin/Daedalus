@@ -56,7 +56,8 @@ export default class PlanesComponent extends mixins(EvanComponent) {
   loading = true;
   data = {
     model: "",
-    msn: ""
+    msn: "",
+    engine: ""
   };
   planes = [];
 
@@ -88,11 +89,12 @@ export default class PlanesComponent extends mixins(EvanComponent) {
         .then(container => {
           return Promise.all([
             container.value.getEntry("model"),
-            container.value.getEntry("msn")
+            container.value.getEntry("msn"),
+            container.value.getEntry("engine").catch(err => '')
           ]);
         })
-        .then(([model, msn]) => {
-          return { model: model, msn: msn };
+        .then(([model, msn, engine]) => {
+          return { model: model, msn: msn, engine };
         });
     });
 

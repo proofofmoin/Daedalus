@@ -62,6 +62,21 @@
           />
           <div class="invalid-feedback">{{ `aviate.planes.createForm.msn.error` | translate }}</div>
         </div>
+        <h2>Engine</h2>
+        <div class="form-group">
+          <label for="msn">{{ `aviate.planes.createForm.engineModel.label` | translate }} *</label>
+          <input
+            class="form-control"
+            required
+            id="engineModel"
+            ref="engineModel"
+            :placeholder="`aviate.planes.createForm.engineModel.placeholder` | translate"
+            v-model="createForm.engineModel.value"
+            :class="{ 'is-invalid' : createForm.engineModel.error }"
+            @blur="createForm.engineModel.setDirty()"
+          />
+          <div class="invalid-feedback">{{ `aviate.planes.createForm.engineModel.error` | translate }}</div>
+        </div>
         <div class="text-right">
           <button
             type="submit"

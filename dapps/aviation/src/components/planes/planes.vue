@@ -38,6 +38,7 @@
       <div class="content">
         <p>Model: {{plane.model}}</p>
         <p>MSN: {{plane.msn}}</p>
+        <p>Engine: {{plane.engine}}</p>
       </div>
     </div>
   </div>
