@@ -30,6 +30,7 @@ import { ComponentRegistrationInterface } from '@evan.network/ui-vue-core';
 
 import PlanesComponent from './planes/planes.vue';
 import NewPlaneComponent from './newPlane/newPlane.vue';
+import MROComponent from './mro/mro.vue';
 
 // export them all, so other applications can access them
 export {
@@ -41,6 +42,7 @@ export {
 const componentRegistration: Array<ComponentRegistrationInterface> = [
   { name: 'planes', component: PlanesComponent },
   { name: 'new-plane', component: NewPlaneComponent },
+  { name: 'mro', component: MROComponent },
 ];
 
 export default componentRegistration;

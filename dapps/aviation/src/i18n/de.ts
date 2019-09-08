@@ -40,6 +40,9 @@ export default {
           "placeholder": "z.B. A320",
           "error": "Bitte ein Model angeben!",
         }
+      },
+      "mro": {
+        "nothing": "Im Moment gibt es nichts zum reparieren oder ersetzen"
       }
     },
     "alias": {
@@ -49,13 +52,15 @@ export default {
     },
     "breadcrumbs": {
       "planes": "Flugzeuge",
-      "newplane": "Neues Flugzeug"
+      "newplane": "Neues Flugzeug",
+      "mro": "Wartung und Reparatur"
     },
     "content": "Herzlichen Glückwunsch {alias}, Sie haben erfolreich Ihre Vue Beispielanwendung erstellt.",
     "content-test": "Neue daten: {test}",
     "dispatcher": {
       "save": "Alias speichern",
-      "new-plane": "Neues Flugzeug erstellen"
+      "new-plane": "Neues Flugzeug erstellen",
+      "replace": "{part} ersetzen"
     },
     "header": {
       "new-plane": "Erstelle ein neues Flugzeug"

@@ -29,12 +29,14 @@ import { RouteRegistrationInterface } from '@evan.network/ui-vue-core';
 
 import PlanesComponent from "./components/planes/planes";
 import NewPlaneComponent from "./components/newPlane/newPlane";
+import MROComponent from "./components/mro/mro";
 
 // map them to element names, so they can be used within templates
 const routeRegistration: Array<RouteRegistrationInterface> = [
   { path: '', redirect: { path: 'planes' } },
   { path: 'planes', component: PlanesComponent },
   { path: 'newplane', component: NewPlaneComponent },
+  { path: 'mro', component: MROComponent },
   { path: '*', redirect: { path: 'planes' } },
 ];
 
