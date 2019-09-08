@@ -138,7 +138,7 @@ export default class MROComponent extends mixins(EvanComponent) {
    */
   async checkMaintaining() {
     const runtime = (<any>this).getRuntime();
-    const dispatcherInstances = await dispatchers.newPlaneDispatcher.getInstances(
+    const dispatcherInstances = await dispatchers.maintain.getInstances(
       runtime
     );
 
@@ -146,7 +146,8 @@ export default class MROComponent extends mixins(EvanComponent) {
     if (dispatcherInstances.length > 0) {
       this.maintaining = true;
     } else if (this.maintaining) {
-      this.updatePlanes(runtime)
+      await this.updatePlanes(runtime);
+      this.$forceUpdate();
       this.maintaining = false;
     }
   }
