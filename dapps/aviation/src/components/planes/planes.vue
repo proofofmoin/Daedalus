@@ -39,7 +39,8 @@
         <p>Model: {{plane.model}}</p>
         <p>MSN: {{plane.msn}}</p>
         <p>Engine: {{plane.engine.model}} ({{plane.engine.goodUntil}}) {{plane.engine.requiresMaintenance ? '❌ requires maintenance' : '✔ OK'}}</p>
-        <p>Takeoff: {{ plane.engine.requiresMaintenance ? '❌ Forbidden!' : '✔ Allowed' }}</p>
+        <p>LandingGear: {{plane.landingGear.model}} ({{plane.landingGear.goodUntil}}) {{plane.landingGear.requiresMaintenance ? '❌ requires maintenance' : '✔ OK'}}</p>
+        <p>Takeoff: {{ (plane.engine.requiresMaintenance || plane.landingGear.requiresMaintenance) ? '❌ Forbidden!' : '✔ Allowed' }}</p>
       </div>
     </div>
   </div>

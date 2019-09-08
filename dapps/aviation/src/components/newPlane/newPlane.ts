@@ -51,6 +51,8 @@ interface PlaneFormInterface extends EvanForm {
   msn: EvanFormControl;
   engineModel: EvanFormControl;
   engineGoodUntil: EvanFormControl;
+ landingGearModel: EvanFormControl;
+ landingGearGoodUntil: EvanFormControl;
 }
 
 @Component({})
@@ -103,6 +105,18 @@ export default class NewPlaneComponent extends mixins(EvanComponent) {
           return this.value.length !== 0;
         }
       },
+      landingGearModel: {
+        value: "",
+        validate: function(vueInstance: NewPlaneComponent, form: PlaneFormInterface) {
+          return this.value.length !== 0;
+        }
+      },
+      landingGearGoodUntil: {
+        value: "",
+        validate: function(vueInstance: NewPlaneComponent, form: PlaneFormInterface) {
+          return this.value.length !== 0;
+        }
+      },
     }));
 
     // watch for updates
@@ -119,6 +133,8 @@ export default class NewPlaneComponent extends mixins(EvanComponent) {
       msn: this.createForm.msn.value,
       engineModel: this.createForm.engineModel.value,
       engineGoodUntil: this.createForm.engineGoodUntil.value,
+      landingGearModel: this.createForm.landingGearModel.value,
+      landingGearGoodUntil: this.createForm.landingGearGoodUntil.value,
     });
   }
 

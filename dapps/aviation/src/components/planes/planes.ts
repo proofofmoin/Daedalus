@@ -86,6 +86,10 @@ export default class PlanesComponent extends mixins(EvanComponent) {
       ))
   }
 
+  loadPartData = (part) => this.getDataFromDigitalTwin(part, ['type', 'model', 'goodUntil']).then(
+    ([type, model, goodUntil]) => ({type, model, goodUntil, requiresMaintenance: new Date(goodUntil) < new Date()})
+  )
+
   /**
    * Load runtime from current scope and start using it...
    */
@@ -107,13 +111,12 @@ export default class PlanesComponent extends mixins(EvanComponent) {
     let planePromises = planeAddresses.map(address =>
       this.getDataFromDigitalTwin(
         address,
-        ['model', 'msn', 'engine']
-      ).then(async ([model, msn, engine]) => ({
+        ['model', 'msn', 'engine', 'landingGear']
+      ).then(async ([model, msn, engine, landingGear]) => ({
         model,
         msn,
-        engine: await this.getDataFromDigitalTwin(engine, ['type', 'model', 'goodUntil']).then(
-          ([type, model, goodUntil]) => ({type, model, goodUntil, requiresMaintenance: new Date(goodUntil) < new Date()})
-        )
+        engine: await this.loadPartData(engine),
+        landingGear: await this.loadPartData(landingGear),
       }))
     )
 

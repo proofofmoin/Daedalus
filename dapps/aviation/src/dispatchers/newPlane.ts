@@ -77,6 +77,7 @@ dispatcher.step(async (instance: DispatcherInstance, formData: any) => {
     data.setEntry("model", formData.planeModel),
     data.setEntry("msn", formData.msn),
     data.setEntry("engine", await createPart(runtime, "Engine", formData.engineModel, formData.engineGoodUntil)),
+    data.setEntry("landingGear", await createPart(runtime, "Landing Gear", formData.landingGearModel, formData.landingGearGoodUntil)),
   ]);
 
   await runtime.profile.loadForAccount(runtime.profile.treeLabels.contracts);
