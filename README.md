@@ -1,4 +1,8 @@
-# aviate
+# Daedalus
+
+Manage airplanes and keep track of needed maintanance.
+
+***DApp build on evan network***
 
 ## Install
 - you very likely will need `nvm` installed
@@ -24,6 +28,3 @@ npm run dapps-build
 ```bash
 npm run dapps-serve
 ```
-
-## Deployment
-Have a look at the [deployment description](https://evannetwork.github.io/dev/deployment).
