@@ -36,7 +36,7 @@
       <div class="content">
         <div class="form-group">
           <label for="planeModel">{{ `aviate.planes.createForm.planeModel.label` | translate }} *</label>
-          <input
+          <select
             class="form-control"
             required
             id="planeModel"
@@ -45,7 +45,13 @@
             v-model="createForm.planeModel.value"
             :class="{ 'is-invalid' : createForm.planeModel.error }"
             @blur="createForm.planeModel.setDirty()"
-          />
+          >
+            <option value="A320">A320</option>
+            <option value="A330">A330</option>
+            <option value="A340">A340</option>
+            <option value="A350">A350</option>
+            <option value="A380">A380</option>
+          </select>
           <div class="invalid-feedback">{{ `aviate.planes.createForm.planeModel.error` | translate }}</div>
         </div>
         <div class="form-group">
@@ -65,7 +71,7 @@
         <h2>Engine</h2>
         <div class="form-group">
           <label for="msn">{{ `aviate.planes.createForm.engineModel.label` | translate }} *</label>
-          <input
+          <select
             class="form-control"
             required
             id="engineModel"
@@ -74,7 +80,11 @@
             v-model="createForm.engineModel.value"
             :class="{ 'is-invalid' : createForm.engineModel.error }"
             @blur="createForm.engineModel.setDirty()"
-          />
+          >
+            <option value="Rolls-Royce">Rolls-Royce</option>
+            <option value="General Electric">General Electric</option>
+            <option value="Pratt & Whitney">Pratt & Whitney</option>
+          </select>
           <div class="invalid-feedback">{{ `aviate.planes.createForm.engineModel.error` | translate }}</div>
         </div>
         <div class="form-group">
@@ -95,7 +105,7 @@
         <h2>Landing Gear</h2>
         <div class="form-group">
           <label for="msn">{{ `aviate.planes.createForm.landingGearModel.label` | translate }} *</label>
-          <input
+          <select
             class="form-control"
             required
             id="landingGearModel"
@@ -104,7 +114,11 @@
             v-model="createForm.landingGearModel.value"
             :class="{ 'is-invalid' : createForm.landingGearModel.error }"
             @blur="createForm.landingGearModel.setDirty()"
-          />
+          >
+            <option value="Safran">Safran</option>
+            <option value="Liebherr">Liebherr</option>
+            <option value="Collins Aerospace">Collins Aerospace</option>
+          </select>
           <div class="invalid-feedback">{{ `aviate.planes.createForm.landingGearModel.error` | translate }}</div>
         </div>
         <div class="form-group">
