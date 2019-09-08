@@ -42,7 +42,8 @@ export default {
         }
       },
       "mro": {
-        "nothing": "Im Moment gibt es nichts zum reparieren oder ersetzen"
+        "nothing": "Im Moment gibt es nichts zum reparieren oder ersetzen",
+        "until": "Abgelaufen am: {until}"
       }
     },
     "alias": {

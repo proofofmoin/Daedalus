@@ -42,7 +42,8 @@ export default {
         }
       },
       "mro": {
-        "nothing": "Currently nothing to repair/replace"
+        "nothing": "Currently nothing to repair/replace",
+        "until": "Was good until: {until}"
       }
     },
     "alias": {

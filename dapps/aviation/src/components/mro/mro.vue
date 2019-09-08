@@ -12,7 +12,7 @@
           <h4 class="m-0 font-weight-semibold">{{part.type}}</h4>
           <h4 class="m-0 font-weight-semibold">{{part.model}}</h4>
         </div>
-        <p>Was good until: {{part.goodUntil}}</p>        
+        <p>{{ $t('aviate.planes.mro.until', { until: part.goodUntil } ) }}</p>        
         <div class="text-right">
           <button
             type="submit"
@@ -27,7 +27,7 @@
         </div>
       </section>
     </section>
-    <section v-if="planes.length === 0" style="text-align: center;">
+    <section v-if="planes.length === 0 && !loading" style="text-align: center;">
       <strong>{{ 'aviate.planes.mro.nothing' | translate }}</strong>
     </section>
   </div>
