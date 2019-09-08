@@ -31,14 +31,15 @@
     <div class="white-box border-smooth rounded" v-for="plane in planes" v-bind:key="plane.msn">
       <div class="header">
         <h3 class="m-0 font-weight-semibold">
-          {{plane.model}}:{{plane.msn}}
+          ✈ {{plane.model}}:{{plane.msn}}
         </h3>
       </div>
 
       <div class="content">
         <p>Model: {{plane.model}}</p>
         <p>MSN: {{plane.msn}}</p>
-        <p>Engine: {{plane.engine}}</p>
+        <p>Engine: {{plane.engine.model}} ({{plane.engine.goodUntil}}) {{plane.engine.requiresMaintenance ? '❌ requires maintenance' : '✔ OK'}}</p>
+        <p>Takeoff: {{ plane.engine.requiresMaintenance ? '❌ Forbidden!' : '✔ Allowed' }}</p>
       </div>
     </div>
   </div>

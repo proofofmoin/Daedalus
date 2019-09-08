@@ -114,13 +114,11 @@ export default class NewPlaneComponent extends mixins(EvanComponent) {
   }
 
   newPlane() {
-    const engineGoodUntilDate = new Date(this.createForm.engineGoodUntil.value);
-
     dispatchers.newPlaneDispatcher.start((<any>this).getRuntime(), {
       planeModel: this.createForm.planeModel.value,
       msn: this.createForm.msn.value,
       engineModel: this.createForm.engineModel.value,
-      engineGoodUntil: engineGoodUntilDate.getTime(),
+      engineGoodUntil: this.createForm.engineGoodUntil.value,
     });
   }
 

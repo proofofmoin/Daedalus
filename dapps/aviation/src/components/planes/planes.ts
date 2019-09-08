@@ -57,9 +57,34 @@ export default class PlanesComponent extends mixins(EvanComponent) {
   data = {
     model: "",
     msn: "",
-    engine: ""
+    engine: {
+      type: '',
+      model: '',
+      goodUntil: '',
+      requiresMaintenance: false
+    }
   };
   planes = [];
+
+  getDataFromDigitalTwin = async (address: string, entries: string[]) => {
+    if (!address) {
+      return entries.map(entry => '')
+    }
+
+    console.log(`fetching data from address '${address}'`);
+
+    const runtime = (<any>this).getRuntime();
+
+    return await (new bcc.DigitalTwin(runtime, {
+      accountId: runtime.activeAccount,
+      address: address,
+      containerConfig: null
+    }))
+      .getEntry("data")
+      .then(container => Promise.all(
+        entries.map(entry => container.value.getEntry(entry).catch(err => ''))
+      ))
+  }
 
   /**
    * Load runtime from current scope and start using it...
@@ -79,24 +104,18 @@ export default class PlanesComponent extends mixins(EvanComponent) {
       return;
     }
 
-    let planePromises = planeAddresses.map(address => {
-      return (new bcc.DigitalTwin(runtime, {
-        accountId: runtime.activeAccount,
-        address: address,
-        containerConfig: null
+    let planePromises = planeAddresses.map(address =>
+      this.getDataFromDigitalTwin(
+        address,
+        ['model', 'msn', 'engine']
+      ).then(async ([model, msn, engine]) => ({
+        model,
+        msn,
+        engine: await this.getDataFromDigitalTwin(engine, ['type', 'model', 'goodUntil']).then(
+          ([type, model, goodUntil]) => ({type, model, goodUntil, requiresMaintenance: new Date(goodUntil) < new Date()})
+        )
       }))
-        .getEntry("data")
-        .then(container => {
-          return Promise.all([
-            container.value.getEntry("model"),
-            container.value.getEntry("msn"),
-            container.value.getEntry("engine").catch(err => '')
-          ]);
-        })
-        .then(([model, msn, engine]) => {
-          return { model: model, msn: msn, engine };
-        });
-    });
+    )
 
     this.planes = await Promise.all(planePromises);
     // await Promise.all(this.planes.reduce((all, current) => all.concat(current), []));

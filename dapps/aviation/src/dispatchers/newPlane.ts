@@ -19,7 +19,7 @@ const createTwinWithDescription = (runtime: any, description: any) => bcc.Digita
   factoryAddress: "index.factory.evan"
 })
 
-const createPart = async (runtime: bcc.Runtime, type: string, model: string, goodUntil: number) => {
+const createPart = async (runtime: bcc.Runtime, type: string, model: string, goodUntil: string) => {
   const twin = await createTwinWithDescription(
     runtime,
     {
