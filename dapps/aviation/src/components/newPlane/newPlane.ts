@@ -132,9 +132,9 @@ export default class NewPlaneComponent extends mixins(EvanComponent) {
       planeModel: this.createForm.planeModel.value,
       msn: this.createForm.msn.value,
       engineModel: this.createForm.engineModel.value,
-      engineGoodUntil: this.createForm.engineGoodUntil.value,
+      engineGoodUntil: new Date(this.createForm.engineGoodUntil.value).toDateString(),
       landingGearModel: this.createForm.landingGearModel.value,
-      landingGearGoodUntil: this.createForm.landingGearGoodUntil.value,
+      landingGearGoodUntil: new Date(this.createForm.landingGearGoodUntil.value).toDateString(),
     });
   }
 

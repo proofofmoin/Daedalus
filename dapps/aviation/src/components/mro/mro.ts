@@ -12,7 +12,7 @@ import {
 import * as bcc from "@evan.network/api-blockchain-core";
 import * as dappBrowser from "@evan.network/ui-dapp-browser";
 
-import * as dispatchers from '../../dispatchers/registry';
+import * as dispatchers from "../../dispatchers/registry";
 
 @Component({})
 export default class MROComponent extends mixins(EvanComponent) {
@@ -34,7 +34,14 @@ export default class MROComponent extends mixins(EvanComponent) {
    */
   async created() {
     const runtime = (<any>this).getRuntime();
-    dispatchers.maintain.watch(() => this.checkMaintaining())
+    dispatchers.maintain.watch(() => this.checkMaintaining());
+    await this.updatePlanes(runtime)
+    console.log(this.planes);
+
+    this.loading = false;
+  }
+
+  async updatePlanes(runtime) {
     // grap all saved planes
     const createdPlanes =
       (await runtime.profile.getBcContracts("planes.evan")) || {};
@@ -74,23 +81,26 @@ export default class MROComponent extends mixins(EvanComponent) {
     this.planes = await Promise.all(planePromises);
     const current = new Date();
     this.planes = this.planes
-      .filter(plane => plane.parts.length > 0 && plane.parts.find(part => part.goodUntil))
+      .filter(
+        plane =>
+          plane.parts.length > 0 && plane.parts.find(part => part.goodUntil)
+      )
       .map(plane => {
-        plane.parts = plane.parts.filter(part => new Date(part.goodUntil) < current)
+        plane.parts = plane.parts.filter(
+          part => new Date(part.goodUntil) < current
+        );
         return plane;
       })
-      .filter(plane => plane.parts.length > 0)
-    console.log(this.planes);
-
-    this.loading = false;
+      .filter(plane => plane.parts.length > 0);
   }
 
   maintain(partAddress) {
     let now = new Date();
     this.maintaining = true;
+    console.log();
     dispatchers.maintain.start((<any>this).getRuntime(), {
       partAddress,
-      goodUntil: new Date(now.setMonth(now.getMonth()+6))
+      goodUntil: new Date(now.setMonth(now.getMonth() + 6)).toDateString()
     });
   }
 
@@ -128,12 +138,15 @@ export default class MROComponent extends mixins(EvanComponent) {
    */
   async checkMaintaining() {
     const runtime = (<any>this).getRuntime();
-    const dispatcherInstances = await dispatchers.newPlaneDispatcher.getInstances(runtime);
+    const dispatcherInstances = await dispatchers.newPlaneDispatcher.getInstances(
+      runtime
+    );
 
     // if more than one dispatcher is running, block interactions
     if (dispatcherInstances.length > 0) {
       this.maintaining = true;
-    } else {
+    } else if (this.maintaining) {
+      this.updatePlanes(runtime)
       this.maintaining = false;
     }
   }

@@ -1,13 +1,13 @@
 <template>
   <div class="container-wide">
     <evan-loading v-if="loading"></evan-loading>
-    <section class="white-box border-smooth rounded" v-for="plane in planes" v-bind:key="plane.msn">
+    <section class="white-box border-smooth rounded" v-for="plane in planes" v-bind:key="plane.msn+plane.parts.length">
       <div class="header" style="display: flex; justify-content: space-between;">
         <h3 class="m-0 font-weight-semibold">{{plane.model}}</h3>
         <h3 class="m-0 font-weight-semibold">{{plane.msn}}</h3>
       </div>
 
-      <section class="content part" v-for="part in plane.parts" v-bind:key="part.type+part.goodUntil">
+      <section class="content part" v-for="part in plane.parts" v-bind:key="part.address">
         <div style="display: flex; justify-content: space-between;">
           <h4 class="m-0 font-weight-semibold">{{part.type}}</h4>
           <h4 class="m-0 font-weight-semibold">{{part.model}}</h4>
