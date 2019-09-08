@@ -36,7 +36,7 @@ export default {
           "error": "Please enter a Serialnumber!",
         },
         "planeModel": {
-          "label": "Plane model",
+          "label": "Aircraft model",
           "placeholder": "e.g. A320",
           "error": "Please enter a model!",
         },
@@ -80,11 +80,11 @@ export default {
     "content-test": "New data: {test}",
     "dispatcher": {
       "save": "Saving Alias",
-      "new-plane": "Create a new plane",
+      "new-plane": "Create a new aircraft",
       "maintain": "Repair {part}"
     },
     "header": {
-      "new-plane": "Create a new plane"
+      "new-plane": "Create a new aircraft"
     }
   }
 }
