@@ -39,6 +39,26 @@ export default {
           "label": "Model",
           "placeholder": "z.B. A320",
           "error": "Bitte ein Model angeben!",
+        },
+        "engineModel": {
+          "label": "Model",
+          "placeholder": "z.B. ",
+          "error": "Bitte ein Model angeben!",
+        },
+        "engineGoodUntil": {
+          "label": "Auslaufdatum",
+          "placeholder": "z.B. 2019-01-02",
+          "error": "Bitte ein Auslaufdatum angeben!",
+        },
+        "landingGearModel": {
+          "label": "Model",
+          "placeholder": "z.B. ",
+          "error": "Bitte ein Model angeben!",
+        },
+        "landingGearGoodUntil": {
+          "label": "Auslaufdatum",
+          "placeholder": "z.B. 2019-01-02",
+          "error": "Bitte ein Auslaufdatum angeben!",
         }
       },
       "mro": {
