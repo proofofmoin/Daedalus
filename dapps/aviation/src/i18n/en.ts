@@ -72,9 +72,9 @@ export default {
       "title": "Alias"
     },
     "breadcrumbs": {
-      "planes": "Planes",
-      "newplane": "New plane",
-      "mro": "Maintanance and repair"
+      "planes": "Airline",
+      "newplane": "Manufacturer",
+      "mro": "Maintanance and Repair"
     },
     "content": "Congratulations {alias}, you've successfully created your Vue sample application.",
     "content-test": "New data: {test}",

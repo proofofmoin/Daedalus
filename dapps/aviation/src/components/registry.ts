@@ -40,8 +40,8 @@ export {
 
 // map them to element names, so they can be used within templates
 const componentRegistration: Array<ComponentRegistrationInterface> = [
-  { name: 'planes', component: PlanesComponent },
   { name: 'new-plane', component: NewPlaneComponent },
+  { name: 'planes', component: PlanesComponent },
   { name: 'mro', component: MROComponent },
 ];
 
