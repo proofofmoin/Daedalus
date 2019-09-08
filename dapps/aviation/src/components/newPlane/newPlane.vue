@@ -28,9 +28,9 @@
 <template>
   <div class="container-wide">
     <evan-loading v-if="loading"></evan-loading>
-    <div class="white-box border-smooth rounded">
+    <div class="white-box border-smooth rounded" v-else>
       <div class="header">
-        <h3 class="m-0 font-weight-semibold">New plane</h3>
+        <h3 class="m-0 font-weight-semibold">{{ `aviate.header.new-plane` | translate }}</h3>
       </div>
 
       <div class="content">

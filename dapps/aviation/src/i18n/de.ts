@@ -57,10 +57,9 @@ export default {
       "save": "Alias speichern",
       "new-plane": "Neues Flugzeug erstellen"
     },
-    "header2": "Datenbereich",
-    "save-finished": "Speichern erfolgreich",
-    "save-finished-desc": "Sie haben erfolgreich Ihren Alias gespeichert.",
-    "sidebarcontent": "Sidebar-Darstellung"
+    "header": {
+      "new-plane": "Erstelle ein neues Flugzeug"
+    }
   }
 }
 /* tslint:enable */;

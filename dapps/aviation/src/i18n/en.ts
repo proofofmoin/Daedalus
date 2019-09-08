@@ -57,11 +57,9 @@ export default {
       "save": "Saving Alias",
       "new-plane": "Create a new plane"
     },
-    "header": "Vue example",
-    "header2": "Data area",
-    "save-finished": "Saving successfull",
-    "save-finished-desc": "You have successfully saved your alias.",
-    "sidebarcontent": "Sidebar display"
+    "header": {
+      "new-plane": "Create a new plane"
+    }
   }
 }
 /* tslint:enable */;
