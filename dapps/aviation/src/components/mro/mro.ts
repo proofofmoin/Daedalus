@@ -12,9 +12,7 @@ import {
 import * as bcc from "@evan.network/api-blockchain-core";
 import * as dappBrowser from "@evan.network/ui-dapp-browser";
 
-interface ReplaceFormInterface extends EvanForm {
-  goodUntil: EvanFormControl;
-}
+import * as dispatchers from '../../dispatchers/registry';
 
 @Component({})
 export default class MROComponent extends mixins(EvanComponent) {
@@ -29,24 +27,14 @@ export default class MROComponent extends mixins(EvanComponent) {
   };
   planes = [];
 
-  replacing = false;
-  replaceForm: ReplaceFormInterface = null;
+  maintaining = false;
 
   /**
    * Load runtime from current scope and start using it...
    */
   async created() {
     const runtime = (<any>this).getRuntime();
-
-    this.replaceForm = (<ReplaceFormInterface>new EvanForm(this, {
-      goodUntil: {
-        value: "",
-        validate: function(vueInstance: MROComponent, form: ReplaceFormInterface) {
-          return this.value.length !== 0;
-        }
-      }
-    }));
-
+    dispatchers.maintain.watch(() => this.checkMaintaining())
     // grap all saved planes
     const createdPlanes =
       (await runtime.profile.getBcContracts("planes.evan")) || {};
@@ -77,6 +65,7 @@ export default class MROComponent extends mixins(EvanComponent) {
           return {
             model: model,
             msn: msn,
+            address: address,
             parts: [engine, landingGear]
           };
         });
@@ -94,6 +83,15 @@ export default class MROComponent extends mixins(EvanComponent) {
     console.log(this.planes);
 
     this.loading = false;
+  }
+
+  maintain(partAddress) {
+    let now = new Date();
+    this.maintaining = true;
+    dispatchers.maintain.start((<any>this).getRuntime(), {
+      partAddress,
+      goodUntil: new Date(now.setMonth(now.getMonth()+6))
+    });
   }
 
   getPart(runtime, container, type: String) {
@@ -114,7 +112,7 @@ export default class MROComponent extends mixins(EvanComponent) {
             ]);
           })
           .then(([model, type, goodUntil]) => {
-            return { model, type, goodUntil };
+            return { model, type, goodUntil, address };
           })
           .catch(err => {
             return {};
@@ -123,5 +121,20 @@ export default class MROComponent extends mixins(EvanComponent) {
       .catch(err => {
         return {};
       });
+  }
+
+  /**
+   * Watch for dispatcher updates.
+   */
+  async checkMaintaining() {
+    const runtime = (<any>this).getRuntime();
+    const dispatcherInstances = await dispatchers.newPlaneDispatcher.getInstances(runtime);
+
+    // if more than one dispatcher is running, block interactions
+    if (dispatcherInstances.length > 0) {
+      this.maintaining = true;
+    } else {
+      this.maintaining = false;
+    }
   }
 }

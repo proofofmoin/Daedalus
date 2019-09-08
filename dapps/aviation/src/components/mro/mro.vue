@@ -7,7 +7,7 @@
         <h3 class="m-0 font-weight-semibold">{{plane.msn}}</h3>
       </div>
 
-      <section class="content part" v-for="part in plane.parts" v-bind:key="part.type">
+      <section class="content part" v-for="part in plane.parts" v-bind:key="part.type+part.goodUntil">
         <div style="display: flex; justify-content: space-between;">
           <h4 class="m-0 font-weight-semibold">{{part.type}}</h4>
           <h4 class="m-0 font-weight-semibold">{{part.model}}</h4>
@@ -17,10 +17,10 @@
           <button
             type="submit"
             class="btn btn-primary btn-rounded"
-            :disabled="replacing || !replaceForm.isValid"
-            @click="replace()"
+            :disabled="maintaining"
+            @click="maintain(part.address)"
           >
-            {{ $t('aviate.dispatcher.replace', { part: part.type } ) }}
+            {{ $t('aviate.dispatcher.maintain', { part: part.type } ) }}
             <div v-if="loading" class="spinner-border spinner-border-sm text-secondary ml-3"></div>
             <i class="mdi mdi-arrow-right label ml-3" v-else></i>
           </button>

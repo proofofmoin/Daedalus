@@ -27,8 +27,10 @@
 
 import saveDispatcher from './save';
 import newPlaneDispatcher from './newPlane';
+import maintain from './maintain';
 
 export {
   saveDispatcher,
-  newPlaneDispatcher
+  newPlaneDispatcher,
+  maintain
 }

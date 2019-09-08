@@ -81,7 +81,7 @@ export default {
     "dispatcher": {
       "save": "Saving Alias",
       "new-plane": "Create a new plane",
-      "replace": "Replace {part}"
+      "maintain": "Repair {part}"
     },
     "header": {
       "new-plane": "Create a new plane"
