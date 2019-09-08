@@ -74,7 +74,8 @@ export default {
     "breadcrumbs": {
       "planes": "Flugzeuge",
       "newplane": "Neues Flugzeug",
-      "mro": "Wartung und Reparatur"
+      "mro": "Wartung und Reparatur",
+      "aviate": "Daedalus",
     },
     "content": "Herzlichen Glückwunsch {alias}, Sie haben erfolreich Ihre Vue Beispielanwendung erstellt.",
     "content-test": "Neue daten: {test}",
