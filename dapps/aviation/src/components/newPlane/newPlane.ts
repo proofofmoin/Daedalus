@@ -50,6 +50,7 @@ interface PlaneFormInterface extends EvanForm {
   planeModel: EvanFormControl;
   msn: EvanFormControl;
   engineModel: EvanFormControl;
+  engineGoodUntil: EvanFormControl;
 }
 
 @Component({})
@@ -96,6 +97,12 @@ export default class NewPlaneComponent extends mixins(EvanComponent) {
           return this.value.length !== 0;
         }
       },
+      engineGoodUntil: {
+        value: "",
+        validate: function(vueInstance: NewPlaneComponent, form: PlaneFormInterface) {
+          return this.value.length !== 0;
+        }
+      },
     }));
 
     // watch for updates
@@ -107,10 +114,13 @@ export default class NewPlaneComponent extends mixins(EvanComponent) {
   }
 
   newPlane() {
+    const engineGoodUntilDate = new Date(this.createForm.engineGoodUntil.value);
+
     dispatchers.newPlaneDispatcher.start((<any>this).getRuntime(), {
       planeModel: this.createForm.planeModel.value,
       msn: this.createForm.msn.value,
       engineModel: this.createForm.engineModel.value,
+      engineGoodUntil: engineGoodUntilDate.getTime(),
     });
   }
 

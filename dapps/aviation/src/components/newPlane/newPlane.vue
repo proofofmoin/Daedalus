@@ -77,6 +77,21 @@
           />
           <div class="invalid-feedback">{{ `aviate.planes.createForm.engineModel.error` | translate }}</div>
         </div>
+        <div class="form-group">
+          <label for="msn">{{ `aviate.planes.createForm.engineGoodUntil.label` | translate }} *</label>
+          <input
+            class="form-control"
+            required
+            id="engineGoodUntil"
+            ref="engineGoodUntil"
+            type="date"
+            :placeholder="`aviate.planes.createForm.engineGoodUntil.placeholder` | translate"
+            v-model="createForm.engineGoodUntil.value"
+            :class="{ 'is-invalid' : createForm.engineGoodUntil.error }"
+            @blur="createForm.engineGoodUntil.setDirty()"
+          />
+          <div class="invalid-feedback">{{ `aviate.planes.createForm.engineGoodUntil.error` | translate }}</div>
+        </div>
         <div class="text-right">
           <button
             type="submit"
