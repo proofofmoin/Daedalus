@@ -19,7 +19,7 @@ const createTwinWithDescription = (runtime: any, description: any) => bcc.Digita
   factoryAddress: "index.factory.evan"
 })
 
-const createPart = async (runtime: bcc.Runtime, type: string, model: string, goodUntil: number) => {
+const createPart = async (runtime: bcc.Runtime, type: string, model: string, goodUntil: string) => {
   const twin = await createTwinWithDescription(
     runtime,
     {
@@ -77,6 +77,7 @@ dispatcher.step(async (instance: DispatcherInstance, formData: any) => {
     data.setEntry("model", formData.planeModel),
     data.setEntry("msn", formData.msn),
     data.setEntry("engine", await createPart(runtime, "Engine", formData.engineModel, formData.engineGoodUntil)),
+    data.setEntry("landingGear", await createPart(runtime, "Landing Gear", formData.landingGearModel, formData.landingGearGoodUntil)),
   ]);
 
   await runtime.profile.loadForAccount(runtime.profile.treeLabels.contracts);

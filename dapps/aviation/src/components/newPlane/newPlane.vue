@@ -92,6 +92,36 @@
           />
           <div class="invalid-feedback">{{ `aviate.planes.createForm.engineGoodUntil.error` | translate }}</div>
         </div>
+        <h2>Landing Gear</h2>
+        <div class="form-group">
+          <label for="msn">{{ `aviate.planes.createForm.landingGearModel.label` | translate }} *</label>
+          <input
+            class="form-control"
+            required
+            id="landingGearModel"
+            ref="landingGearModel"
+            :placeholder="`aviate.planes.createForm.landingGearModel.placeholder` | translate"
+            v-model="createForm.landingGearModel.value"
+            :class="{ 'is-invalid' : createForm.landingGearModel.error }"
+            @blur="createForm.landingGearModel.setDirty()"
+          />
+          <div class="invalid-feedback">{{ `aviate.planes.createForm.landingGearModel.error` | translate }}</div>
+        </div>
+        <div class="form-group">
+          <label for="msn">{{ `aviate.planes.createForm.landingGearGoodUntil.label` | translate }} *</label>
+          <input
+            class="form-control"
+            required
+            id="landingGearGoodUntil"
+            ref="landingGearGoodUntil"
+            type="date"
+            :placeholder="`aviate.planes.createForm.landingGearGoodUntil.placeholder` | translate"
+            v-model="createForm.landingGearGoodUntil.value"
+            :class="{ 'is-invalid' : createForm.landingGearGoodUntil.error }"
+            @blur="createForm.landingGearGoodUntil.setDirty()"
+          />
+          <div class="invalid-feedback">{{ `aviate.planes.createForm.landingGearGoodUntil.error` | translate }}</div>
+        </div>
         <div class="text-right">
           <button
             type="submit"
